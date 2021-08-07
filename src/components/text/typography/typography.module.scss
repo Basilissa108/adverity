@@ -1,0 +1,16 @@
+@import "../../../variables.scss";
+
+.h1 {
+    font-size: $font-size-large;
+    color: $color-gray-dark;
+}
+
+.p {
+    font-size: $font-size-regular;
+    color: $color-gray-dark;
+}
+
+.span {
+    font-size: $font-size-small;
+    $color: $color-gray-light;
+}

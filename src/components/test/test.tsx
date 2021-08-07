@@ -1,5 +1,5 @@
 import React from "react";
-import * as css from "./test.module.scss";
+import css from "./test.module.scss";
 
 type TestProps = {
     /** what? */

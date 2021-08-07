@@ -1,5 +1,5 @@
 import React from "react";
-import * as css from "./icon.module.scss";
+import css from "./icon.module.scss";
 
 type IconProps = {
     /** Icon path to be displayed (Info, Warning, Close, Link, Code are available namespaced to the Icon component) */

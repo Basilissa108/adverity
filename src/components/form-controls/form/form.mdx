@@ -1,0 +1,36 @@
+---
+name: Form
+route: /form
+---
+
+import { Playground, Props } from "docz";
+import { Input } from "../input/input.tsx";
+import { Textarea } from "../textarea/textarea.tsx";
+import { Form } from "./form.tsx";
+
+# Form
+
+## Basic usage
+
+<Playground>
+    {() => {
+        const [input, setInput] = React.useState("");
+        const [textarea, setTextarea] = React.useState("");
+        return (
+            <Form>
+                <Input
+                    label="Input field label"
+                    value={input}
+                    onChange={(v) => setInput(v)}
+                />
+                <Textarea
+                    label="Textarea label"
+                    value={textarea}
+                    onChange={(v) => setTextarea(v)}
+                />
+            </Form>
+        );
+    }}
+</Playground>
+
+<Props of={Form} />

@@ -1,0 +1,26 @@
+---
+name: Input
+route: /input
+---
+
+import { Playground, Props } from "docz";
+import { Input } from "./input.tsx";
+
+# Input
+
+## Basic usage
+
+<Playground>
+    {() => {
+        const [value, setValue] = React.useState("");
+        return (
+            <Input
+                label="Input field label"
+                value={value}
+                onChange={(v) => setValue(v)}
+            />
+        );
+    }}
+</Playground>
+
+<Props of={Input} />

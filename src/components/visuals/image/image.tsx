@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "../../../utilities/shorthands";
-import * as css from "./image.module.scss";
+import css from "./image.module.scss";
 
 type ImageProps = {
     /** Name of the image file which should be located in */
