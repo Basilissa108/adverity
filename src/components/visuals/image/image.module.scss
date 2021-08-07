@@ -1,0 +1,15 @@
+.image {
+    height: auto;
+}
+
+.image.small {
+    max-width: 200px;
+}
+
+.image.medium {
+    max-width: 400px;
+}
+
+.image.large {
+    max-width: 600px;
+}
