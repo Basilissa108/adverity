@@ -1,0 +1,7 @@
+@mixin focus-reset($class) {
+    html {
+        #{$class}:focus:not(:focus-visible) {
+            outline: none;
+        }
+    }
+}
