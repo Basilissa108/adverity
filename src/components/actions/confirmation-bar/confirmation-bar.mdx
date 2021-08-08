@@ -18,6 +18,7 @@ import { ConfirmationBar } from "./confirmation-bar.tsx";
         onCancel={() => console.log("Cancel button clicked")}
         additionalActions={[
             <Button
+                key="First additional action"
                 onClick={() => console.log("additional action clicked")}
                 variant="link"
             >

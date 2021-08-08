@@ -1,0 +1,62 @@
+---
+name: Modal
+route: /modal
+---
+
+import { Playground, Props } from "docz";
+import { Button } from "../../actions/button/button.tsx";
+import { Toast } from "../../text/toast/toast.tsx";
+import { Modal } from "./modal.tsx";
+
+# Modal
+
+This component renders a dialog on top of an overlay. Use it to display important messages or to break down complex workflows.
+
+## Basic usage
+
+<Playground>
+    {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        return (
+            <>
+                <Button variant="primary" onClick={() => setIsOpen(true)}>Trigger modal</Button>
+                {isOpen && (
+                    <Modal
+                        title="Modal component"
+                        onSubmit={() => setIsOpen(false)}
+                        onClose={() => setIsOpen(false)}
+                    >
+                        <Toast variant="info">
+                            Some important message.
+                        </Toast>
+                    </Modal>
+                )}
+            </>
+        );
+    }}
+
+</Playground>
+
+## Guidelines
+
+### Header
+
+Choose a descriptive `title` for the modal, it is used as `aria-label` for the modal as well to give the user an idea of the content that the modal contains.
+
+### Content
+
+Make sure the content is appropriate for a modal, if you have a lot of content, consider breaking it down into smaller steps and create a flow guiding the user through multiple modals.
+
+### Footer
+
+By default the footer contains a secondary cancel button and a primary call-to-action button.
+
+The cancel button calls the function provided as `onClose` prop which is intended to hide the modal and if appropriate reset state such as form values that were displayed in the modal. You can hide this button by setting `hideCancel` to `true`.
+
+The call-to-action button is calling the function provided as `onSubmit` prop, and is intended for completing the task the modal is used for, either acknowledging the message or completing a form or similar actions. The label of this button defaults to "Submit", if you need a custom label set it with the `submitButtonText` prop.
+
+You can display additional actions in the modal footer's left side by providing an array of `Button` components as `additionalActions` prop.
+
+## Props
+
+<Props of={Modal} />
