@@ -11,6 +11,8 @@ type ConfirmationBarProps = {
     submitButtonText?: string;
     /** Additional actions that will be displayed on the left side of the bar */
     additionalActions?: ReactElement<ButtonProps>[];
+    /** Styles the primary action as destructive */
+    destructive?: boolean;
 };
 
 export const ConfirmationBar = (props: ConfirmationBarProps): JSX.Element => {
@@ -19,6 +21,7 @@ export const ConfirmationBar = (props: ConfirmationBarProps): JSX.Element => {
         submitButtonText = "Submit",
         onCancel,
         additionalActions,
+        destructive,
     } = props;
 
     return (
@@ -28,7 +31,10 @@ export const ConfirmationBar = (props: ConfirmationBarProps): JSX.Element => {
             )}
             <div className={css.actions}>
                 {onCancel && <Button onClick={onCancel}>Cancel</Button>}
-                <Button variant="primary" onClick={onSubmit}>
+                <Button
+                    variant={destructive ? "destructive" : "primary"}
+                    onClick={onSubmit}
+                >
                     {submitButtonText}
                 </Button>
             </div>

@@ -1,0 +1,73 @@
+---
+name: Edit datastream
+route: /use-case/edit-datastream
+---
+
+import { Playground, Props } from "docz";
+import { Modal } from "../components/dialog/modal/modal.tsx";
+import { Image } from "../components/visuals/image/image.tsx";
+import { Form } from "../components/form-controls/form/form.tsx";
+import { Input } from "../components/form-controls/input/input.tsx";
+import { Textarea } from "../components/form-controls/textarea/textarea.tsx";
+import { Icon } from "../components/visuals/icon/icon.tsx";
+import { Button } from "../components/actions/button/button.tsx";
+import GoogleAdsLogo from "../assets/google-adwords-logo.png";
+
+# Edit datastream modal
+
+<Playground>
+    {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [title, setTitle] = React.useState("Google Ads report");
+        const [description, setDescription] = React.useState("");
+        return (
+            <>
+                <Button variant="primary" onClick={() => setIsOpen(true)}>Trigger modal</Button>
+                {isOpen && (
+                    <Modal
+                        title="Edit datastream"
+                        onSubmit={() => setIsOpen(false)}
+                        onClose={() => {
+                            setIsOpen(false);
+                            setTitle("Google Ads report");
+                            setDescription("");
+                        }}
+                        submitButtonText="Apply"
+                        additionalActions={[
+                            <Button key="copy-link-button" variant="link" onClick={() => console.log("Copied link!")}>
+                                <Icon>
+                                    <Icon.Link />
+                                </Icon>
+                                Copy link
+                            </Button>,
+                            <Button key="get-embed-code-button" variant="link" onClick={() => console.log("Got embeded code!")}>
+                                <Icon>
+                                    <Icon.Code />
+                                </Icon>
+                                Get embed code
+                            </Button>
+                        ]}
+                        align="center"
+                    >
+                        <Image src={GoogleAdsLogo} alt="Google AdWords logo" size="small" />
+                        <Form>
+                            <Input
+                                label="Datastream title"
+                                placeholder="Enter your data stream title here"
+                                value={title}
+                                onChange={(v) => setTitle(v)}
+                            />
+                            <Textarea
+                                label="Description"
+                                placeholder="Enter your message here"
+                                value={description}
+                                onChange={(v) => setDescription(v)}
+                            />
+                        </Form>
+                    </Modal>
+                )}
+            </>
+        );
+    }}
+
+</Playground>

@@ -1,0 +1,36 @@
+---
+name: Alert
+route: /use-case/alert
+---
+
+import { Playground, Props } from "docz";
+import { Modal } from "../components/dialog/modal/modal.tsx";
+import { Button } from "../components/actions/button/button.tsx";
+import { Toast } from "../components/text/toast/toast.tsx";
+
+# Alert modal
+
+<Playground>
+    {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        return (
+            <>
+                <Button variant="primary" onClick={() => setIsOpen(true)}>Trigger modal</Button>
+                {isOpen && (
+                    <Modal
+                        title="Alert"
+                        onSubmit={() => setIsOpen(false)}
+                        onClose={() => setIsOpen(false)}
+                        submitButtonText="Got it"
+                        hideCancel
+                    >
+                        <Toast variant="info">
+                            This is an example of an alert message that is so important that deserved a modal dialog.
+                        </Toast>
+                    </Modal>
+                )}
+            </>
+        );
+    }}
+
+</Playground>

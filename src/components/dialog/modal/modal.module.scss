@@ -41,14 +41,26 @@
 
 .content {
     width: 100%;
-    padding: $spacing-medium $spacing-large;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-large;
     box-sizing: border-box;
+
+    &.left {
+        align-items: flex-start;
+    }
+
+    &.center {
+        align-items: center;
+    }
+
+    &.right {
+        align-items: flex-end;
+    }
 }
 
 .footer {
     width: 100%;
-    padding: $spacing-medium $spacing-large;
-    box-sizing: border-box;
     border-top: 1px solid $color-gray-light;
 }
 

@@ -1,0 +1,36 @@
+---
+name: Delete user
+route: /use-case/delete-user
+---
+
+import { Playground, Props } from "docz";
+import { Modal } from "../components/dialog/modal/modal.tsx";
+import { Button } from "../components/actions/button/button.tsx";
+import { Toast } from "../components/text/toast/toast.tsx";
+
+# Delete user modal
+
+<Playground>
+    {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        return (
+            <>
+                <Button variant="primary" onClick={() => setIsOpen(true)}>Trigger modal</Button>
+                {isOpen && (
+                    <Modal
+                        title="Delete user"
+                        onSubmit={() => setIsOpen(false)}
+                        onClose={() => setIsOpen(false)}
+                        submitButtonText="Delete user"
+                        destructive
+                    >
+                        <Toast variant="warning">
+                            This will permanently delete John Doe. This action cannot be undone.
+                        </Toast>
+                    </Modal>
+                )}
+            </>
+        );
+    }}
+
+</Playground>

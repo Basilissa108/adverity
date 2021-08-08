@@ -8,6 +8,7 @@ import React, {
     KeyboardEvent,
     MouseEvent,
 } from "react";
+import { cn } from "../../../utilities/shorthands";
 import { Button, ButtonProps } from "../../actions/button/button";
 import { ConfirmationBar } from "../../actions/confirmation-bar/confirmation-bar";
 import { H1 } from "../../text/typography/typography";
@@ -29,6 +30,10 @@ type ModalProps = {
     hideCancel?: boolean;
     /** Additional actions that will be displayed on the left side of the modal footer */
     additionalActions?: ReactElement<ButtonProps>[];
+    /** Styles the primary action as destructive */
+    destructive?: boolean;
+    /** Aligns the modal content (defaults to "left") */
+    align?: "left" | "center" | "right";
 };
 
 export const Modal = (props: ModalProps): JSX.Element => {
@@ -40,6 +45,8 @@ export const Modal = (props: ModalProps): JSX.Element => {
         submitButtonText,
         hideCancel,
         additionalActions,
+        destructive,
+        align = "left",
     } = props;
     const overlayRef = createRef<HTMLDivElement>();
     const modalRef = createRef<HTMLDivElement>();
@@ -66,7 +73,7 @@ export const Modal = (props: ModalProps): JSX.Element => {
             modalRef.current.focus();
             firstRender.current = false;
         }
-    }, [modalRef]);
+    }, []);
 
     return (
         <div
@@ -90,13 +97,14 @@ export const Modal = (props: ModalProps): JSX.Element => {
                         </Icon>
                     </Button>
                 </div>
-                <div className={css.content}>{children}</div>
+                <div className={cn(css.content, css[align])}>{children}</div>
                 <div className={css.footer}>
                     <ConfirmationBar
                         onSubmit={handleSubmit}
                         submitButtonText={submitButtonText}
                         onCancel={hideCancel ? undefined : handleClose}
                         additionalActions={additionalActions}
+                        destructive={destructive}
                     />
                 </div>
             </div>

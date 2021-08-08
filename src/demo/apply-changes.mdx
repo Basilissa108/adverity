@@ -1,0 +1,35 @@
+---
+name: Apply changes
+route: /use-case/apply-changes
+---
+
+import { Playground, Props } from "docz";
+import { Modal } from "../components/dialog/modal/modal.tsx";
+import { Button } from "../components/actions/button/button.tsx";
+import { Toast } from "../components/text/toast/toast.tsx";
+
+# Apply changes modal
+
+<Playground>
+    {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        return (
+            <>
+                <Button variant="primary" onClick={() => setIsOpen(true)}>Trigger modal</Button>
+                {isOpen && (
+                    <Modal
+                        title="Apply changes?"
+                        onSubmit={() => setIsOpen(false)}
+                        onClose={() => setIsOpen(false)}
+                        submitButtonText="Apply"
+                    >
+                        <Toast variant="info">
+                            This will overwrite all visualisations on connected dashboard widgets. This action cannot be undone.
+                        </Toast>
+                    </Modal>
+                )}
+            </>
+        );
+    }}
+
+</Playground>

@@ -1,0 +1,58 @@
+---
+name: Contact support
+route: /use-case/contact-support
+---
+
+import { Playground, Props } from "docz";
+import { Modal } from "../components/dialog/modal/modal.tsx";
+import { Form } from "../components/form-controls/form/form.tsx";
+import { Input } from "../components/form-controls/input/input.tsx";
+import { Textarea } from "../components/form-controls/textarea/textarea.tsx";
+import { Button } from "../components/actions/button/button.tsx";
+
+# Contact support modal
+
+<Playground>
+    {() => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [email, setEmail] = React.useState("");
+        const [subject, setSubject] = React.useState("");
+        const [message, setMessage] = React.useState("");
+        return (
+            <>
+                <Button variant="primary" onClick={() => setIsOpen(true)}>Trigger modal</Button>
+                {isOpen && (
+                    <Modal
+                        title="Contact support"
+                        onSubmit={() => setIsOpen(false)}
+                        onClose={() => {
+                            setIsOpen(false);
+                            setEmail("");
+                            setSubject("");
+                            setMessage("");
+                        }}
+                    >
+                        <Form>
+                            <Input
+                                label="E-mail"
+                                value={email}
+                                onChange={(v) => setEmail(v)}
+                            />
+                            <Input
+                                label="Subject"
+                                value={subject}
+                                onChange={(v) => setSubject(v)}
+                            />
+                            <Textarea
+                                label="Message"
+                                value={message}
+                                onChange={(v) => setMessage(v)}
+                            />
+                        </Form>
+                    </Modal>
+                )}
+            </>
+        );
+    }}
+
+</Playground>
