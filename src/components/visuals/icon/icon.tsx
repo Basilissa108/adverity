@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./icon.module.scss";
 
-type IconProps = {
+export type IconProps = {
     /** Icon path to be displayed (Info, Warning, Close, Link, Code are available namespaced to the Icon component) */
     children: React.SVGProps<SVGGElement>;
 };

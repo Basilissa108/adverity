@@ -1,0 +1,77 @@
+@import "../../../variables.scss";
+@import "../../../mixins.scss";
+
+@include focus-reset(".button");
+
+.button {
+    display: flex;
+    align-items: center;
+    padding: $spacing-small $spacing-medium;
+    border: 1px solid;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+        box-shadow: $focus-shadow;
+    }
+
+    .label {
+        margin-left: $spacing-small;
+        font-size: $font-size-regular;
+    }
+
+    svg {
+        margin: 0;
+    }
+}
+
+.primary {
+    background-color: $color-blue;
+    border-color: $color-blue;
+
+    .label {
+        color: $color-white;
+    }
+}
+
+.secondary {
+    background-color: transparent;
+    border-color: $color-gray-light;
+
+    .label {
+        color: $color-blue;
+    }
+}
+
+.destructive {
+    background-color: $color-red;
+    border-color: $color-red;
+
+    &:hover,
+    &:focus,
+    &:active {
+        box-shadow: $focus-shadow-destructive;
+    }
+
+    .label {
+        color: $color-white;
+    }
+}
+
+.link {
+    background-color: transparent;
+    border: none;
+
+    .label {
+        color: $color-blue;
+    }
+}
+
+.borderless {
+    padding: none;
+    border: none;
+    background-color: transparent;
+}

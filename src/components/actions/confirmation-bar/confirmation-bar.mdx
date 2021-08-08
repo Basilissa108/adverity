@@ -1,0 +1,33 @@
+---
+name: ConfirmationBar
+route: /confirmation-bar
+---
+
+import { Playground, Props } from "docz";
+import { Button } from "../button/button.tsx";
+import { Icon } from "../../visuals/icon/icon.tsx";
+import { ConfirmationBar } from "./confirmation-bar.tsx";
+
+# ConfirmationBar
+
+## Basic usage
+
+<Playground>
+    <ConfirmationBar
+        onSubmit={() => console.log("Submit button clicked")}
+        onCancel={() => console.log("Cancel button clicked")}
+        additionalActions={[
+            <Button
+                onClick={() => console.log("additional action clicked")}
+                variant="link"
+            >
+                <Icon>
+                    <Icon.Link />
+                </Icon>
+                Copy link
+            </Button>,
+        ]}
+    />
+</Playground>
+
+<Props of={ConfirmationBar} />

@@ -1,0 +1,51 @@
+---
+name: Button
+route: /button
+---
+
+import { Playground, Props } from "docz";
+import { Icon } from "../../visuals/icon/icon.tsx";
+import { Button } from "./button.tsx";
+
+# Button
+
+## Basic usage
+
+<Playground>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Button
+            onClick={() => console.log("primary button clicked")}
+            variant="primary"
+        >
+            Primary
+        </Button>
+        <Button onClick={() => console.log("secondary button clicked")}>
+            Secondary
+        </Button>
+        <Button
+            onClick={() => console.log("destructive button clicked")}
+            variant="destructive"
+        >
+            Destructive
+        </Button>
+        <Button
+            onClick={() => console.log("link button clicked")}
+            variant="link"
+        >
+            <Icon>
+                <Icon.Link />
+            </Icon>
+            Link
+        </Button>
+        <Button
+            onClick={() => console.log("icon-only button clicked")}
+            aria-label="Icon-only button"
+        >
+            <Icon>
+                <Icon.Close />
+            </Icon>
+        </Button>
+    </div>
+</Playground>
+
+<Props of={Button} />

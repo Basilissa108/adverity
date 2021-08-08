@@ -1,0 +1,25 @@
+@import "../../../variables.scss";
+
+.confirmationBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: $spacing-large $spacing-x-large;
+}
+
+.actions {
+    display: flex;
+    margin-left: auto;
+
+    > * {
+        margin: 0px $spacing-small;
+    }
+}
+
+.additionalActions {
+    display: flex;
+
+    > * {
+        margin: 0px $spacing-small;
+    }
+}
