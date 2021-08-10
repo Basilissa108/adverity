@@ -4,3 +4,88 @@ route: /
 ---
 
 # RFC
+
+Start Date: 2021-08-09
+
+## Summary
+
+This RFC proposes a design for a modal component that's intended to be used for displaying important messages or to break down complex workflows in an isolated state where users can focus on the interaction at hand.
+
+## Basic example
+
+```tsx
+const [isOpen, setIsOpen] = React.useState(false);
+return (
+    <>
+        <Button variant="primary" onClick={() => setIsOpen(true)}>
+            Trigger modal
+        </Button>
+        {isOpen && (
+            <Modal
+                title="Modal component"
+                onSubmit={() => setIsOpen(false)}
+                onClose={() => setIsOpen(false)}
+            >
+                <Toast variant="info">Some important message.</Toast>
+            </Modal>
+        )}
+    </>
+);
+```
+
+## Detailed design
+
+Props
+
+```tsx
+    /** Title of the modal */
+    title: string;
+    /** Content of the modal */
+    children: ReactNode;
+    /** Callback for closing the modal */
+    onClose: () => void;
+    /** Callback for the primary action in the modal footer */
+    onSubmit: MouseEventHandler<HTMLButtonElement>;
+    /** Custom label for the primary action button in the modal footer (defaults to "Submit") */
+    submitButtonText?: string;
+    /** Hides the cancel button in the modal footer */
+    hideCancel?: boolean;
+    /** Additional actions that will be displayed on the left side of the modal footer */
+    additionalActions?: ReactElement<ButtonProps>[];
+    /** Styles the primary action as destructive */
+    destructive?: boolean;
+    /** Aligns the modal content (defaults to "left") */
+    align?: "left" | "center" | "right";
+```
+
+The component renders an overlay with a higher z-index than the underlying content and the modal content on top of it. When the overlay is clicked, it calls the `onClose` callback to close the modal. When mounting the component also adds a className to the body of the page to prevent page scroll while the modal is visible to minimize distractions from the presented content.
+
+When the modal is first rendered it automatically receives focus to assist users using keyboard navigation or screen-readers follow the interaction seamlessly. It is labelled with an `aria-label` that should put the content of the modal into context. When the ESC key is used, the `onClose` callback is called to close the modal.
+
+The consumer of the modal component owns the visibility, meaning the trigger of the modal is not connected to the modal itself which then should be conditionally rendered when triggered.
+
+The design of the props interface is intentionally restrictive to ensure a consistent design of all modals following the same structure and applying the same styling.
+
+## Drawbacks
+
+The proposed design is rather opinionated and restrictive and requires more props than the alternative which I'll outline in the next section. Additionally, there will likely appear edge cases that the component in its current state might not be able to support due to the constraints.
+
+## Alternatives
+
+A possible alternative for the component design would be a more flexible approach which can be both an advantage or a drawback. On the one hand, it will support more use cases, on the other hand, it opens up for inconsistencies in the design.
+
+Instead of using props to force a header - content - footer structure, the component could simply take `children` and `onClose` as props and leave the composition to the consumer. By exposing namespaced components (header, content, and footer) that are supposed to be used as children correct styling of each section would still be ensured.
+
+Within the component, there could be implemented some additional checks to log a warning if no header or footer was provided to make sure it is intentionally missing.
+
+## Adoption strategy
+
+Inform designers and developers that the component has been added, what it is intended for and encourage using it. The assumption here is that there is a need for the component so adoption is expected to happen naturally.
+
+## How we teach this
+
+For developers, the style guide contains detailed information on how to use the component. Additional teaching will likely not be necessary. For designers, a workshop regarding which workflows modals can be used for could make sense.
+
+## Additional
+
+Detailed guidelines regarding the use of the component as well as more examples can be found in the style guide respectively in the sections `Components > Modal` and `Use cases`.
